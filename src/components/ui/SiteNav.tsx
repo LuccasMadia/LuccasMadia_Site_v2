@@ -12,7 +12,7 @@ export default function SiteNav({ dark, onNavigate }: SiteNavProps) {
       as="nav"
       delay={0}
       y={-20}
-      className="fixed left-0 right-0 top-0 z-50 px-6 pt-6 md:px-10 md:pt-8"
+      className="fixed left-0 right-0 top-0 z-50 px-5 pt-4 md:px-8 md:pt-5"
     >
       <ul className="flex justify-between">
         {nav.map((item) => (
@@ -24,7 +24,7 @@ export default function SiteNav({ dark, onNavigate }: SiteNavProps) {
                 const index = sectionOrder.indexOf(item.href.replace('#', ''))
                 if (index !== -1) onNavigate(index)
               }}
-              className={`text-sm font-medium uppercase tracking-wider transition-colors duration-300 hover:opacity-70 md:text-lg lg:text-[1.4rem] ${
+              className={`text-xs font-medium uppercase tracking-wider transition-colors duration-300 hover:opacity-70 md:text-sm lg:text-base ${
                 dark ? 'text-[#0C0C0C]' : 'text-[#D7E2EA]'
               }`}
             >
