@@ -9,14 +9,6 @@ export default function AboutSection() {
       id="sobre"
       className="relative flex min-h-screen flex-col items-center justify-center px-5 py-20 sm:px-8 md:px-10"
     >
-      {about.decorations.map((deco) => (
-        <div key={deco.src} className={`absolute ${deco.className}`}>
-          <FadeIn delay={deco.delay} x={deco.x} y={0} duration={0.9}>
-            <img src={deco.src} alt="" loading="lazy" className="w-full" />
-          </FadeIn>
-        </div>
-      ))}
-
       <div className="flex flex-col items-center gap-10 sm:gap-14 md:gap-16">
         <FadeIn delay={0} y={40}>
           <h2
