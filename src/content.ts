@@ -49,8 +49,8 @@ export const hero = {
 }
 
 export const about = {
-  heading: 'Sobre mim',
-  text: 'Com mais de cinco anos de experiência entre administração e tecnologia, ajudo negócios a crescer com processos organizados, dados claros e presença digital marcante. Vamos construir algo incrível juntos!',
+  heading: 'Sobre nós',
+  text: 'Somos uma empresa de consultoria dedicada a entregar soluções estratégicas e criativas. Atuamos com compromisso, ética e foco em resultados que impulsionam negócios.',
   decorations: [
     {
       src: 'https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png',

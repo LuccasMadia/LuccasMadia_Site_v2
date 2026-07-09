@@ -1,68 +1,53 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import type { MotionValue } from 'framer-motion'
+import { motion } from 'framer-motion'
+import type { Variants } from 'framer-motion'
 
 interface AnimatedTextProps {
   text: string
   className?: string
 }
 
-function Char({
-  char,
-  start,
-  end,
-  progress,
-}: {
-  char: string
-  start: number
-  end: number
-  progress: MotionValue<number>
-}) {
-  const opacity = useTransform(progress, [start, end], [0.2, 1])
-  return (
-    <span className="relative inline-block">
-      <span className="opacity-20">{char}</span>
-      <motion.span className="absolute inset-0" style={{ opacity }}>
-        {char}
-      </motion.span>
-    </span>
-  )
+const container: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.022,
+    },
+  },
+}
+
+const charVariant: Variants = {
+  hidden: { opacity: 0.2 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.4, ease: 'easeOut' },
+  },
 }
 
 export default function AnimatedText({ text, className }: AnimatedTextProps) {
-  const ref = useRef<HTMLParagraphElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start 0.8', 'end 0.2'],
-  })
   const words = text.split(' ')
-  const total = text.length
-  let charCount = 0
 
   return (
-    <p ref={ref} className={className}>
-      {words.map((word, wi) => {
-        const wordStart = charCount
-        charCount += word.length + 1
-        return (
-          <span key={wi}>
-            <span className="inline-block whitespace-nowrap">
-              {word.split('').map((char, ci) => {
-                const index = wordStart + ci
-                return (
-                  <Char
-                    key={ci}
-                    char={char}
-                    start={index / total}
-                    end={(index + 1) / total}
-                    progress={scrollYProgress}
-                  />
-                )
-              })}
-            </span>{' '}
-          </span>
-        )
-      })}
-    </p>
+    <motion.p
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.6 }}
+      variants={container}
+    >
+      {words.map((word, wi) => (
+        <span key={wi}>
+          <span className="inline-block whitespace-nowrap">
+            {word.split('').map((char, ci) => (
+              <span key={ci} className="relative inline-block">
+                <span className="opacity-20">{char}</span>
+                <motion.span className="absolute inset-0" variants={charVariant}>
+                  {char}
+                </motion.span>
+              </span>
+            ))}
+          </span>{' '}
+        </span>
+      ))}
+    </motion.p>
   )
 }
