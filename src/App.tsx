@@ -3,7 +3,7 @@ import AboutSection from './components/sections/AboutSection'
 import ServicesSection from './components/sections/ServicesSection'
 import ProjectsSection from './components/sections/ProjectsSection'
 import DepoimentosSection from './components/sections/DepoimentosSection'
-import FormacoesSection from './components/sections/FormacoesSection'
+// import FormacoesSection from './components/sections/FormacoesSection'
 import ContatoSection from './components/sections/ContatoSection'
 
 export default function App() {
@@ -14,7 +14,7 @@ export default function App() {
       <ServicesSection />
       <ProjectsSection />
       <DepoimentosSection />
-      <FormacoesSection />
+      {/* <FormacoesSection /> */}
       <ContatoSection />
     </main>
   )
