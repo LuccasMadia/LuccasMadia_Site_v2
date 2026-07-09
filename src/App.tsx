@@ -2,7 +2,7 @@ import HeroSection from './components/sections/HeroSection'
 import AboutSection from './components/sections/AboutSection'
 import ServicesSection from './components/sections/ServicesSection'
 import ProjectsSection from './components/sections/ProjectsSection'
-import DepoimentosSection from './components/sections/DepoimentosSection'
+// import DepoimentosSection from './components/sections/DepoimentosSection'
 // import FormacoesSection from './components/sections/FormacoesSection'
 import ContatoSection from './components/sections/ContatoSection'
 
@@ -13,7 +13,7 @@ export default function App() {
       <AboutSection />
       <ServicesSection />
       <ProjectsSection />
-      <DepoimentosSection />
+      {/* <DepoimentosSection /> */}
       {/* <FormacoesSection /> */}
       <ContatoSection />
     </main>
