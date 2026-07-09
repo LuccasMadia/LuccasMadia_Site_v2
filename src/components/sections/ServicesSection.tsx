@@ -17,17 +17,16 @@ export default function ServicesSection() {
       </FadeIn>
       <div className="mx-auto max-w-5xl">
         {services.map((servico, i) => (
-          <FadeIn key={servico.numero} delay={i * 0.1}>
+          <FadeIn key={servico.nome} delay={i * 0.1}>
             <div
               className="flex items-center gap-8 border-b py-8 sm:py-10 md:gap-14 md:py-12"
               style={{ borderColor: 'rgba(12, 12, 12, 0.15)' }}
             >
-              <span
-                className="font-black leading-none text-[#0C0C0C]"
-                style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}
-              >
-                {servico.numero}
-              </span>
+              <servico.icone
+                className="shrink-0 text-[#0C0C0C]"
+                style={{ fontSize: 'clamp(2.5rem, 6vw, 84px)' }}
+                aria-hidden
+              />
               <div className="flex flex-col gap-2">
                 <h3
                   className="font-medium uppercase text-[#0C0C0C]"

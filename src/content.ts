@@ -1,5 +1,8 @@
+import type { Icon } from 'react-bootstrap-icons'
+import { BarChartLine, Briefcase, CodeSlash, Megaphone, Palette } from 'react-bootstrap-icons'
+
 export interface Servico {
-  numero: string
+  icone: Icon
   nome: string
   descricao: string
 }
@@ -82,31 +85,31 @@ export const about = {
 
 export const services: Servico[] = [
   {
-    numero: '01',
+    icone: Briefcase,
     nome: 'Consultoria Administrativa',
     descricao:
       'Otimização de processos e estruturas para máxima eficiência e crescimento sustentável.',
   },
   {
-    numero: '02',
+    icone: BarChartLine,
     nome: 'Dashboards Interativos',
     descricao:
       'Visualização de dados em tempo real para decisões mais rápidas e embasadas.',
   },
   {
-    numero: '03',
+    icone: CodeSlash,
     nome: 'Sites e Sistemas',
     descricao:
       'Desenvolvimento de soluções digitais sob medida, do site institucional ao sistema completo.',
   },
   {
-    numero: '04',
+    icone: Megaphone,
     nome: 'Social Media',
     descricao:
       'Gestão estratégica de perfis digitais para ampliar presença e engajamento online.',
   },
   {
-    numero: '05',
+    icone: Palette,
     nome: 'Design Gráfico',
     descricao:
       'Identidade visual e materiais que comunicam autoridade e profissionalismo.',
