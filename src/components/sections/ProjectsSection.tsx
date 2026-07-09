@@ -1,87 +1,103 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import type { MotionValue } from 'framer-motion'
+import { useRef, useState } from 'react'
+import type { WheelEvent } from 'react'
+import { motion } from 'framer-motion'
 import LiveProjectButton from '../ui/LiveProjectButton'
 import { projects } from '../../content'
 import type { Project } from '../../content'
 
-interface ProjectCardProps {
+interface ProjectPanelProps {
   project: Project
-  index: number
-  total: number
-  progress: MotionValue<number>
+  isActive: boolean
+  isDimmed: boolean
+  onEnter: () => void
+  onToggle: () => void
 }
 
-function ProjectCard({ project, index, total, progress }: ProjectCardProps) {
-  const targetScale = 1 - (total - 1 - index) * 0.03
-  const scale = useTransform(progress, [index / total, 1], [1, targetScale])
-  const radius = 'rounded-[40px] sm:rounded-[50px] md:rounded-[60px]'
+function ProjectPanel({ project, isActive, isDimmed, onEnter, onToggle }: ProjectPanelProps) {
+  const radius = 'rounded-[24px] sm:rounded-[32px] md:rounded-[40px]'
 
   return (
-    <div className="h-[85vh]">
+    <motion.div
+      onMouseEnter={onEnter}
+      onClick={onToggle}
+      animate={{
+        width: isActive ? 'clamp(320px, 52vw, 640px)' : 'clamp(64px, 9vw, 110px)',
+      }}
+      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+      style={{ height: '70vh' }}
+      className={`group relative shrink-0 cursor-pointer overflow-hidden border-2 border-[#D7E2EA]/30 ${radius}`}
+    >
+      <img
+        src={project.imagens.col2}
+        alt=""
+        loading="lazy"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+      />
       <motion.div
-        style={{ scale, top: `calc(6rem + ${index * 28}px)` }}
-        className={`sticky mx-auto max-w-6xl border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-6 md:p-8 ${radius}`}
+        animate={{ opacity: isDimmed ? 0.35 : 1 }}
+        transition={{ duration: 0.4 }}
+        className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10"
+      />
+
+      <motion.div
+        animate={{ opacity: isActive ? 0 : 1 }}
+        transition={{ duration: 0.3 }}
+        className="absolute inset-0 flex flex-col items-center justify-between p-3 sm:p-4"
       >
-        <div className="flex flex-wrap items-center justify-between gap-4 px-2 pb-4 sm:px-4 sm:pb-6">
-          <div className="flex items-center gap-4 sm:gap-8">
-            <span
-              className="hero-heading font-black leading-none"
-              style={{ fontSize: 'clamp(2.5rem, 7vw, 100px)' }}
-            >
-              {project.numero}
-            </span>
-            <div>
-              <p className="text-xs font-light uppercase tracking-widest text-[#D7E2EA] opacity-60 sm:text-sm">
-                {project.categoria}
-              </p>
-              <h3
-                className="font-medium uppercase text-[#D7E2EA]"
-                style={{ fontSize: 'clamp(1.1rem, 2.4vw, 2.2rem)' }}
-              >
-                {project.nome}
-              </h3>
-            </div>
-          </div>
+        <span className="text-xs font-light text-[#D7E2EA] opacity-60">{project.numero}</span>
+        <span
+          className="whitespace-nowrap text-xs font-medium uppercase tracking-[0.2em] text-[#D7E2EA] sm:text-sm"
+          style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+        >
+          {project.nome}
+        </span>
+        <span className="h-6" />
+      </motion.div>
+
+      <motion.div
+        initial={false}
+        animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 24 }}
+        transition={{ duration: 0.4, delay: isActive ? 0.2 : 0 }}
+        className="absolute inset-0 flex flex-col justify-end gap-3 p-5 sm:p-7"
+      >
+        <span
+          className="hero-heading font-black leading-none"
+          style={{ fontSize: 'clamp(2rem, 4vw, 64px)' }}
+        >
+          {project.numero}
+        </span>
+        <p className="text-xs font-light uppercase tracking-widest text-[#D7E2EA] opacity-60 sm:text-sm">
+          {project.categoria}
+        </p>
+        <h3
+          className="font-medium uppercase leading-tight text-[#D7E2EA]"
+          style={{ fontSize: 'clamp(1.2rem, 2.4vw, 2rem)' }}
+        >
+          {project.nome}
+        </h3>
+        <div className="pt-1">
           <LiveProjectButton label="Ver projeto" href="#" />
         </div>
-        <div className="flex gap-3 sm:gap-4">
-          <div className="flex w-[40%] flex-col gap-3 sm:gap-4">
-            <img
-              src={project.imagens.col1a}
-              alt=""
-              loading="lazy"
-              className={`w-full object-cover ${radius}`}
-              style={{ height: 'clamp(130px, 16vw, 230px)' }}
-            />
-            <img
-              src={project.imagens.col1b}
-              alt=""
-              loading="lazy"
-              className={`w-full object-cover ${radius}`}
-              style={{ height: 'clamp(160px, 22vw, 340px)' }}
-            />
-          </div>
-          <div className="w-[60%]">
-            <img
-              src={project.imagens.col2}
-              alt=""
-              loading="lazy"
-              className={`h-full w-full object-cover ${radius}`}
-            />
-          </div>
-        </div>
       </motion.div>
-    </div>
+    </motion.div>
   )
 }
 
 export default function ProjectsSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  })
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const handleWheel = (e: WheelEvent<HTMLDivElement>) => {
+    const el = scrollRef.current
+    if (!el) return
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY
+    const canScrollRight = el.scrollLeft + el.clientWidth < el.scrollWidth - 1
+    const canScrollLeft = el.scrollLeft > 0
+    if ((delta > 0 && canScrollRight) || (delta < 0 && canScrollLeft)) {
+      e.preventDefault()
+      el.scrollLeft += delta
+    }
+  }
 
   return (
     <section
@@ -94,14 +110,20 @@ export default function ProjectsSection() {
       >
         Projetos
       </h2>
-      <div ref={containerRef}>
+      <div
+        ref={scrollRef}
+        onWheel={handleWheel}
+        onMouseLeave={() => setActiveIndex(null)}
+        className="scrollbar-hide mx-auto flex max-w-6xl gap-2 overflow-x-auto sm:gap-3"
+      >
         {projects.map((project, i) => (
-          <ProjectCard
+          <ProjectPanel
             key={project.nome}
             project={project}
-            index={i}
-            total={projects.length}
-            progress={scrollYProgress}
+            isActive={activeIndex === i}
+            isDimmed={activeIndex !== null && activeIndex !== i}
+            onEnter={() => setActiveIndex(i)}
+            onToggle={() => setActiveIndex((current) => (current === i ? null : i))}
           />
         ))}
       </div>
