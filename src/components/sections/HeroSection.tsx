@@ -1,26 +1,11 @@
 import FadeIn from '../ui/FadeIn'
 import Magnet from '../ui/Magnet'
 import ContactButton from '../ui/ContactButton'
-import { hero, nav, site } from '../../content'
+import { hero, site } from '../../content'
 
 export default function HeroSection() {
   return (
-    <section className="relative flex h-screen flex-col" style={{ overflowX: 'clip' }}>
-      <FadeIn as="nav" delay={0} y={-20}>
-        <ul className="flex justify-between px-6 pt-6 md:px-10 md:pt-8">
-          {nav.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                className="text-sm font-medium uppercase tracking-wider text-[#D7E2EA] transition-opacity duration-200 hover:opacity-70 md:text-lg lg:text-[1.4rem]"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </FadeIn>
-
+    <section className="relative flex h-screen flex-col pt-14 md:pt-16" style={{ overflowX: 'clip' }}>
       <div className="overflow-hidden">
         <FadeIn delay={0.15} y={40}>
           <h1 className="hero-heading mt-6 w-full whitespace-nowrap text-center text-[14vw] font-black uppercase leading-none tracking-tight sm:mt-4 sm:text-[15vw] md:-mt-5 md:text-[16vw] lg:text-[17.5vw]">

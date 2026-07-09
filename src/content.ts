@@ -40,6 +40,8 @@ export const nav = [
   { label: 'Contato', href: '#contato' },
 ]
 
+export const sectionOrder = ['hero', 'sobre', 'servicos', 'projetos', 'contato']
+
 export const hero = {
   heading: 'MADIA',
   tagline: 'soluções administrativas, tecnológicas e visuais para o seu negócio',

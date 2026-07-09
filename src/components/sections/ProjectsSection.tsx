@@ -114,6 +114,7 @@ export default function ProjectsSection() {
         ref={scrollRef}
         onWheel={handleWheel}
         onMouseLeave={() => setActiveIndex(null)}
+        data-no-advance
         className="scrollbar-hide mx-auto flex max-w-6xl gap-2 overflow-x-auto sm:gap-3"
       >
         {projects.map((project, i) => (
