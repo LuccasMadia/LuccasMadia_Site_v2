@@ -14,13 +14,13 @@ export default function ServicesSection() {
       <FadeIn>
         <h2
           className="mb-16 text-center font-black uppercase leading-none tracking-tight text-[#0C0C0C] sm:mb-24 md:mb-32"
-          style={{ fontSize: 'clamp(2.2rem, 8vw, 100px)' }}
+          style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
         >
           Serviços
         </h2>
       </FadeIn>
       <div
-        className="mx-auto flex w-full max-w-5xl flex-wrap items-start justify-center gap-x-10 gap-y-14 sm:gap-x-16 md:gap-x-20"
+        className="mx-auto flex w-full max-w-5xl flex-wrap items-start justify-center gap-x-14 gap-y-16 sm:gap-x-20 md:gap-x-24"
         data-no-advance
       >
         {services.map((servico, i) => {
@@ -48,17 +48,17 @@ export default function ServicesSection() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.25 }}
-                      className="absolute top-full z-10 mt-4 w-40 text-center sm:w-52 md:w-60"
+                      className="absolute top-full z-10 mt-5 w-48 text-center sm:w-64 md:w-72"
                     >
                       <h3
-                        className="mb-1 font-medium uppercase text-[#0C0C0C]"
-                        style={{ fontSize: 'clamp(0.7rem, 1.1vw, 0.95rem)' }}
+                        className="mb-2 font-medium uppercase text-[#0C0C0C]"
+                        style={{ fontSize: 'clamp(0.8rem, 1.2vw, 1rem)' }}
                       >
                         {servico.nome}
                       </h3>
                       <p
-                        className="font-light leading-snug text-[#0C0C0C] opacity-60"
-                        style={{ fontSize: 'clamp(0.65rem, 0.9vw, 0.8rem)' }}
+                        className="font-light leading-relaxed text-[#0C0C0C] opacity-60"
+                        style={{ fontSize: 'clamp(0.85rem, 1.3vw, 1.05rem)' }}
                       >
                         {servico.descricao}
                       </p>
