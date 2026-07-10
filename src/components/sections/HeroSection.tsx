@@ -5,7 +5,7 @@ import { hero, site } from '../../content'
 
 export default function HeroSection() {
   return (
-    <section className="relative flex h-screen flex-col pt-10 md:pt-12" style={{ overflowX: 'clip' }}>
+    <section className="relative flex h-screen flex-col" style={{ overflowX: 'clip' }}>
       <div className="overflow-hidden">
         <FadeIn delay={0.15} y={40}>
           <h1 className="hero-heading mt-6 w-full whitespace-nowrap text-center text-[14vw] font-black uppercase leading-none tracking-tight sm:mt-4 sm:text-[15vw] md:-mt-5 md:text-[16vw] lg:text-[17.5vw]">

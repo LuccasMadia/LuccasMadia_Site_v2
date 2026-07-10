@@ -8,7 +8,6 @@ import ProjectsSection from './components/sections/ProjectsSection'
 // import DepoimentosSection from './components/sections/DepoimentosSection'
 // import FormacoesSection from './components/sections/FormacoesSection'
 import ContatoSection from './components/sections/ContatoSection'
-import SiteNav from './components/ui/SiteNav'
 import { sectionOrder } from './content'
 
 export default function App() {
@@ -37,7 +36,6 @@ export default function App() {
       style={{ overflowX: 'clip' }}
       onClick={handleAdvance}
     >
-      <SiteNav dark={sectionOrder[index] === 'servicos'} onNavigate={setIndex} />
       <motion.main
         animate={{ y: `-${index * 100}vh` }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}

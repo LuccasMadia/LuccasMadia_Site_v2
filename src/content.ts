@@ -33,13 +33,6 @@ export const site = {
   email: 'madiaconsultoria@gmail.com',
 }
 
-export const nav = [
-  { label: 'Sobre', href: '#sobre' },
-  { label: 'Serviços', href: '#servicos' },
-  { label: 'Projetos', href: '#projetos' },
-  { label: 'Contato', href: '#contato' },
-]
-
 export const sectionOrder = ['hero', 'sobre', 'servicos', 'projetos', 'contato']
 
 export const hero = {
