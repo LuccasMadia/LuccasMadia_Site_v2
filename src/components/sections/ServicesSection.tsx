@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import FadeIn from '../ui/FadeIn'
 import { services } from '../../content'
 
@@ -9,54 +9,62 @@ export default function ServicesSection() {
   return (
     <section
       id="servicos"
-      className="rounded-t-[40px] bg-white px-5 py-20 sm:rounded-t-[50px] sm:px-8 sm:py-24 md:rounded-t-[60px] md:px-10 md:py-32"
+      className="flex h-full flex-col items-center justify-center rounded-t-[40px] bg-white px-5 py-10 sm:rounded-t-[50px] sm:px-8 md:rounded-t-[60px] md:px-10"
     >
       <FadeIn>
         <h2
-          className="mb-16 text-center font-black uppercase leading-none tracking-tight text-[#0C0C0C] sm:mb-20 md:mb-28"
-          style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+          className="mb-10 text-center font-black uppercase leading-none tracking-tight text-[#0C0C0C] sm:mb-14 md:mb-16"
+          style={{ fontSize: 'clamp(2.2rem, 8vw, 100px)' }}
         >
           Serviços
         </h2>
       </FadeIn>
-      <div className="mx-auto max-w-5xl" data-no-advance>
+      <div
+        className="mx-auto flex w-full max-w-5xl flex-wrap items-start justify-center gap-x-8 gap-y-12 sm:gap-x-12 md:gap-x-16"
+        data-no-advance
+      >
         {services.map((servico, i) => {
           const isActive = activeIndex === i
           return (
-            <FadeIn key={servico.nome} delay={i * 0.1}>
+            <FadeIn key={servico.nome} delay={i * 0.08}>
               <div
                 onMouseEnter={() => setActiveIndex(i)}
                 onMouseLeave={() => setActiveIndex(null)}
                 onClick={() => setActiveIndex((current) => (current === i ? null : i))}
-                className="flex cursor-pointer items-center gap-8 border-b py-8 sm:py-10 md:gap-14 md:py-12"
-                style={{ borderColor: 'rgba(12, 12, 12, 0.15)' }}
+                className="relative flex cursor-pointer flex-col items-center"
               >
                 <servico.icone
-                  className="shrink-0 text-[#0C0C0C]"
-                  style={{ fontSize: 'clamp(2.5rem, 6vw, 84px)' }}
+                  className="text-[#0C0C0C] transition-transform duration-300"
+                  style={{
+                    fontSize: 'clamp(2rem, 4.5vw, 60px)',
+                    transform: isActive ? 'scale(1.12)' : 'scale(1)',
+                  }}
                   aria-hidden
                 />
-                <motion.div
-                  animate={{
-                    width: isActive ? 'clamp(220px, 60vw, 640px)' : 0,
-                    opacity: isActive ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex flex-col gap-2 overflow-hidden"
-                >
-                  <h3
-                    className="font-medium uppercase text-[#0C0C0C]"
-                    style={{ fontSize: 'clamp(1rem, 2.2vw, 2.1rem)' }}
-                  >
-                    {servico.nome}
-                  </h3>
-                  <p
-                    className="font-light leading-relaxed text-[#0C0C0C] opacity-60"
-                    style={{ fontSize: 'clamp(0.85rem, 1.6vw, 1.25rem)' }}
-                  >
-                    {servico.descricao}
-                  </p>
-                </motion.div>
+                <AnimatePresence>
+                  {isActive && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.25 }}
+                      className="absolute top-full z-10 mt-4 w-40 text-center sm:w-52 md:w-60"
+                    >
+                      <h3
+                        className="mb-1 font-medium uppercase text-[#0C0C0C]"
+                        style={{ fontSize: 'clamp(0.7rem, 1.1vw, 0.95rem)' }}
+                      >
+                        {servico.nome}
+                      </h3>
+                      <p
+                        className="font-light leading-snug text-[#0C0C0C] opacity-60"
+                        style={{ fontSize: 'clamp(0.65rem, 0.9vw, 0.8rem)' }}
+                      >
+                        {servico.descricao}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </FadeIn>
           )
