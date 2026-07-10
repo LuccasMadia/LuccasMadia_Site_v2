@@ -13,14 +13,14 @@ export default function ServicesSection() {
     >
       <FadeIn>
         <h2
-          className="mb-10 text-center font-black uppercase leading-none tracking-tight text-[#0C0C0C] sm:mb-14 md:mb-16"
+          className="mb-16 text-center font-black uppercase leading-none tracking-tight text-[#0C0C0C] sm:mb-24 md:mb-32"
           style={{ fontSize: 'clamp(2.2rem, 8vw, 100px)' }}
         >
           Serviços
         </h2>
       </FadeIn>
       <div
-        className="mx-auto flex w-full max-w-5xl flex-wrap items-start justify-center gap-x-8 gap-y-12 sm:gap-x-12 md:gap-x-16"
+        className="mx-auto flex w-full max-w-5xl flex-wrap items-start justify-center gap-x-10 gap-y-14 sm:gap-x-16 md:gap-x-20"
         data-no-advance
       >
         {services.map((servico, i) => {
@@ -36,7 +36,7 @@ export default function ServicesSection() {
                 <servico.icone
                   className="text-[#0C0C0C] transition-transform duration-300"
                   style={{
-                    fontSize: 'clamp(2rem, 4.5vw, 60px)',
+                    fontSize: 'clamp(3rem, 7vw, 96px)',
                     transform: isActive ? 'scale(1.12)' : 'scale(1)',
                   }}
                   aria-hidden
