@@ -1,5 +1,4 @@
 import FadeIn from '../ui/FadeIn'
-import Magnet from '../ui/Magnet'
 import ContactButton from '../ui/ContactButton'
 import DotGrid from '../ui/DotGrid'
 import { hero, site } from '../../content'
@@ -31,9 +30,7 @@ export default function HeroSection() {
 
       <div className="absolute left-1/2 top-1/2 z-10 w-[280px] -translate-x-1/2 -translate-y-1/2 sm:bottom-0 sm:top-auto sm:w-[360px] sm:translate-y-0 md:w-[440px] lg:w-[520px]">
         <FadeIn delay={0.6} y={30}>
-          <Magnet padding={150} strength={3}>
-            <img src={hero.portrait} alt="" className="w-full" />
-          </Magnet>
+          <img src={hero.portrait} alt="" className="w-full" />
         </FadeIn>
       </div>
 
