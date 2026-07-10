@@ -24,7 +24,7 @@ function ProjectPanel({ project, isActive, isDimmed, onEnter, onToggle }: Projec
         width: isActive ? 'clamp(320px, 52vw, 640px)' : 'clamp(64px, 9vw, 110px)',
       }}
       transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-      style={{ height: '70vh' }}
+      style={{ height: '56vh' }}
       className={`group relative shrink-0 cursor-pointer overflow-hidden border-2 border-[#D7E2EA]/30 ${radius}`}
     >
       <img
@@ -102,10 +102,10 @@ export default function ProjectsSection() {
   return (
     <section
       id="projetos"
-      className="relative z-10 -mt-10 rounded-t-[40px] bg-[#0C0C0C] px-5 py-20 sm:-mt-12 sm:rounded-t-[50px] sm:px-8 sm:py-24 md:-mt-14 md:rounded-t-[60px] md:px-10 md:py-32"
+      className="relative z-10 flex h-full flex-col items-center justify-center rounded-t-[40px] bg-[#0C0C0C] px-5 py-6 sm:rounded-t-[50px] sm:px-8 sm:py-8 md:rounded-t-[60px] md:px-10 md:py-10"
     >
       <h2
-        className="hero-heading mb-10 text-center font-black uppercase leading-none tracking-tight sm:mb-14 md:mb-20"
+        className="hero-heading mb-4 text-center font-black uppercase leading-none tracking-tight sm:mb-6 md:mb-8"
         style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
       >
         Projetos
