@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import type { WheelEvent } from 'react'
 import { motion } from 'framer-motion'
 import LiveProjectButton from '../ui/LiveProjectButton'
+import CaseStudyModal from '../ui/CaseStudyModal'
 import { projects } from '../../content'
 import type { Project } from '../../content'
 
@@ -11,9 +12,10 @@ interface ProjectPanelProps {
   isDimmed: boolean
   onEnter: () => void
   onToggle: () => void
+  onOpenCaseStudy: (project: Project) => void
 }
 
-function ProjectPanel({ project, isActive, isDimmed, onEnter, onToggle }: ProjectPanelProps) {
+function ProjectPanel({ project, isActive, isDimmed, onEnter, onToggle, onOpenCaseStudy }: ProjectPanelProps) {
   const radius = 'rounded-[24px] sm:rounded-[32px] md:rounded-[40px]'
 
   return (
@@ -76,7 +78,11 @@ function ProjectPanel({ project, isActive, isDimmed, onEnter, onToggle }: Projec
           {project.nome}
         </h3>
         <div className="pt-1">
-          <LiveProjectButton label="Ver projeto" href="#" />
+          <LiveProjectButton
+            label="Ver projeto"
+            href="#"
+            onClick={project.caseStudy ? () => onOpenCaseStudy(project) : undefined}
+          />
         </div>
       </motion.div>
     </motion.div>
@@ -85,6 +91,7 @@ function ProjectPanel({ project, isActive, isDimmed, onEnter, onToggle }: Projec
 
 export default function ProjectsSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const [caseStudyProject, setCaseStudyProject] = useState<Project | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const handleWheel = (e: WheelEvent<HTMLDivElement>) => {
@@ -125,9 +132,11 @@ export default function ProjectsSection() {
             isDimmed={activeIndex !== null && activeIndex !== i}
             onEnter={() => setActiveIndex(i)}
             onToggle={() => setActiveIndex((current) => (current === i ? null : i))}
+            onOpenCaseStudy={setCaseStudyProject}
           />
         ))}
       </div>
+      <CaseStudyModal project={caseStudyProject} onClose={() => setCaseStudyProject(null)} />
     </section>
   )
 }

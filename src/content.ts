@@ -7,11 +7,18 @@ export interface Servico {
   descricao: string
 }
 
+export interface CaseStudyArea {
+  titulo: string
+  imagem: string
+  descricao: string
+}
+
 export interface Project {
   numero: string
   nome: string
   categoria: string
   imagens: { col1a: string; col1b: string; col2: string }
+  caseStudy?: CaseStudyArea[]
 }
 
 export interface Depoimento {
@@ -113,13 +120,72 @@ export const services: Servico[] = [
 export const projects: Project[] = [
   {
     numero: '01',
-    nome: 'Nextlevel Studio',
+    nome: 'Canecas da Dri',
     categoria: 'Cliente',
     imagens: {
-      col1a: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85',
-      col1b: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85',
-      col2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85',
+      col1a: '/images/canecas/canecas-01-dashboard.png',
+      col1b: '/images/canecas/canecas-04-pedidos.png',
+      col2: '/images/canecas/canecas-00-inicio.png',
     },
+    caseStudy: [
+      {
+        titulo: 'Tela inicial',
+        imagem: '/images/canecas/canecas-00-inicio.png',
+        descricao:
+          'Painel inicial com acesso rápido a todos os módulos do sistema — dashboard, insumos, produtos, pedidos, clientes, fornecedores, relatórios e histórico.',
+      },
+      {
+        titulo: 'Dashboard',
+        imagem: '/images/canecas/canecas-01-dashboard.png',
+        descricao:
+          'Resumo do dia com alertas de estoque baixo, para a Dri saber exatamente o que precisa repor antes de fechar um pedido.',
+      },
+      {
+        titulo: 'Insumos',
+        imagem: '/images/canecas/canecas-02-insumos.png',
+        descricao:
+          'Controle de entradas e saídas de materiais — canecas em branco, tintas, embalagens — com o estoque sempre atualizado automaticamente.',
+      },
+      {
+        titulo: 'Produtos',
+        imagem: '/images/canecas/canecas-03-produtos.png',
+        descricao:
+          'Cadastro dos produtos finais com suas receitas de produção, mostrando quanto de cada insumo é consumido por unidade.',
+      },
+      {
+        titulo: 'Pedidos',
+        imagem: '/images/canecas/canecas-04-pedidos.png',
+        descricao:
+          'Registro e acompanhamento de pedidos por status — pendente, em produção, entregue ou cancelado — com abertura de novo pedido, calendário de entregas e QR code individual para rastrear cada encomenda.',
+      },
+      {
+        titulo: 'Clientes',
+        imagem: '/images/canecas/canecas-05-clientes.png',
+        descricao: 'Cadastro e histórico de clientes, para saber quem comprou o quê e quando.',
+      },
+      {
+        titulo: 'Fornecedores',
+        imagem: '/images/canecas/canecas-06-fornecedores.png',
+        descricao: 'Cadastro dos fornecedores de insumos, centralizando contatos e origem dos materiais.',
+      },
+      {
+        titulo: 'Segurança por módulo',
+        imagem: '/images/canecas/canecas-07-seguranca.png',
+        descricao:
+          'Senha específica em abas sensíveis, restringindo o acesso a informações financeiras e de estoque.',
+      },
+      {
+        titulo: 'Relatórios',
+        imagem: '/images/canecas/canecas-08-relatorios.png',
+        descricao:
+          'Relatórios de pedidos, estoque de insumos e vendas por produto, com filtro por período e exportação em CSV.',
+      },
+      {
+        titulo: 'Histórico',
+        imagem: '/images/canecas/canecas-09-historico.png',
+        descricao: 'Registro de todas as ações realizadas no sistema, com opção de reverter erros.',
+      },
+    ],
   },
   {
     numero: '02',
