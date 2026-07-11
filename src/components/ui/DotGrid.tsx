@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback, useMemo } from 'react'
+import { useRef, useEffect, useCallback, useMemo, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { gsap } from 'gsap'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
@@ -91,6 +91,23 @@ export default function DotGrid({
     lastY: 0,
   })
 
+  const [isVisible, setIsVisible] = useState(true)
+  const isVisibleRef = useRef(isVisible)
+
+  useEffect(() => {
+    isVisibleRef.current = isVisible
+  }, [isVisible])
+
+  useEffect(() => {
+    const wrap = wrapperRef.current
+    if (!wrap || typeof IntersectionObserver === 'undefined') return
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), {
+      threshold: 0,
+    })
+    observer.observe(wrap)
+    return () => observer.disconnect()
+  }, [])
+
   const baseRgb = useMemo(() => hexToRgb(baseColor), [baseColor])
   const activeRgb = useMemo(() => hexToRgb(activeColor), [activeColor])
 
@@ -141,7 +158,7 @@ export default function DotGrid({
   }, [dotSize, gap])
 
   useEffect(() => {
-    if (!circlePath) return
+    if (!circlePath || !isVisible) return
 
     let rafId: number
     const proxSq = proximity * proximity
@@ -184,7 +201,7 @@ export default function DotGrid({
 
     draw()
     return () => cancelAnimationFrame(rafId)
-  }, [proximity, baseColor, activeRgb, baseRgb, circlePath])
+  }, [proximity, baseColor, activeRgb, baseRgb, circlePath, isVisible])
 
   useEffect(() => {
     buildGrid()
@@ -203,6 +220,7 @@ export default function DotGrid({
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
+      if (!isVisibleRef.current) return
       const now = performance.now()
       const pr = pointerRef.current
       const dt = pr.lastTime ? now - pr.lastTime : 16
@@ -254,6 +272,7 @@ export default function DotGrid({
     }
 
     const onClick = (e: MouseEvent) => {
+      if (!isVisibleRef.current) return
       const canvas = canvasRef.current
       if (!canvas) return
       const rect = canvas.getBoundingClientRect()
