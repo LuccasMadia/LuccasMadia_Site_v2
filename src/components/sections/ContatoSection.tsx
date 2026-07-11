@@ -1,6 +1,14 @@
+import { Envelope, Github, Instagram, Whatsapp } from 'react-bootstrap-icons'
 import FadeIn from '../ui/FadeIn'
 import ContactButton from '../ui/ContactButton'
 import { contato, site } from '../../content'
+
+const socialLinks = [
+  { icon: Envelope, href: `mailto:${site.email}`, label: 'E-mail' },
+  { icon: Instagram, href: site.instagram, label: 'Instagram' },
+  { icon: Whatsapp, href: site.whatsapp, label: 'WhatsApp' },
+  { icon: Github, href: site.github, label: 'GitHub' },
+]
 
 export default function ContatoSection() {
   return (
@@ -31,13 +39,21 @@ export default function ContatoSection() {
           </div>
         </FadeIn>
       </div>
-      <footer className="flex flex-col items-center justify-between gap-2 py-8 sm:flex-row">
-        <a
-          href={`mailto:${site.email}`}
-          className="font-light text-[#D7E2EA] transition-opacity duration-200 hover:opacity-70"
-        >
-          {site.email}
-        </a>
+      <footer className="flex flex-col items-center justify-between gap-6 py-8 sm:flex-row">
+        <div className="flex items-center gap-5">
+          {socialLinks.map(({ icon: Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="text-[#D7E2EA] transition-opacity duration-200 hover:opacity-70"
+            >
+              <Icon size={20} />
+            </a>
+          ))}
+        </div>
         <p className="font-light text-[#D7E2EA] opacity-60">{contato.direitos}</p>
       </footer>
     </section>

@@ -38,6 +38,8 @@ export const site = {
   whatsapp:
     'https://wa.me/+5567998746300?text=Ol%C3%A1%2C%20vim%20pelo%20seu%20site%2C%20fiquei%20interessado(a)%20no%20seu%20trabalho.',
   email: 'madiaconsultoria@gmail.com',
+  instagram: '#',
+  github: '#',
 }
 
 export const sectionOrder = ['hero', 'sobre', 'servicos', 'projetos', 'contato']
