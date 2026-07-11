@@ -11,7 +11,7 @@ export default function ContatoSection() {
       <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center sm:gap-8">
         <FadeIn>
           <h2
-            className="hero-heading max-w-4xl font-black uppercase leading-none tracking-tight"
+            className="hero-heading max-w-6xl font-black uppercase leading-none tracking-tight"
             style={{ fontSize: 'clamp(2.2rem, 8vw, 110px)' }}
           >
             {contato.titulo}
