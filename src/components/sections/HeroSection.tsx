@@ -1,7 +1,10 @@
 import FadeIn from '../ui/FadeIn'
 import ContactButton from '../ui/ContactButton'
 import DotGrid from '../ui/DotGrid'
+import BorderGlow from '../ui/BorderGlow'
 import { hero, site } from '../../content'
+
+const glowColors = ['#1FA6AC', '#35B4BA', '#9FE4E7']
 
 export default function HeroSection() {
   return (
@@ -22,15 +25,35 @@ export default function HeroSection() {
 
       <div className="relative z-[1] flex flex-1 items-center justify-center overflow-hidden">
         <FadeIn delay={0.15} y={40}>
-          <h1 className="hero-heading w-full whitespace-nowrap text-center text-[14vw] font-black uppercase leading-none tracking-tight sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw]">
-            {hero.heading}
-          </h1>
+          <BorderGlow
+            className="w-full"
+            backgroundColor="#0C0C0C"
+            glowColor="183 56% 47%"
+            colors={glowColors}
+            borderRadius={40}
+            glowRadius={50}
+            glowIntensity={1.2}
+          >
+            <h1 className="hero-heading w-full whitespace-nowrap text-center text-[14vw] font-black uppercase leading-none tracking-tight sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw]">
+              {hero.heading}
+            </h1>
+          </BorderGlow>
         </FadeIn>
       </div>
 
       <div className="absolute bottom-0 left-1/2 z-10 w-[280px] -translate-x-1/2 sm:w-[360px] md:w-[440px] lg:w-[520px]">
         <FadeIn delay={0.6} y={30}>
-          <img src={hero.portrait} alt="" className="w-full" />
+          <BorderGlow
+            className="w-full"
+            backgroundColor="#0C0C0C"
+            glowColor="183 56% 47%"
+            colors={glowColors}
+            borderRadius={24}
+            glowRadius={40}
+            glowIntensity={1.2}
+          >
+            <img src={hero.portrait} alt="" className="w-full" />
+          </BorderGlow>
         </FadeIn>
       </div>
 
