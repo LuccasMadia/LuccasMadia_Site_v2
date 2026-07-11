@@ -19,7 +19,7 @@ export default function ContatoSection() {
         </FadeIn>
         <FadeIn delay={0.15}>
           <p
-            className="max-w-xl font-light leading-relaxed text-[#D7E2EA] opacity-70"
+            className="max-w-3xl font-light leading-relaxed text-[#D7E2EA] opacity-70"
             style={{ fontSize: 'clamp(0.95rem, 2vw, 1.25rem)' }}
           >
             {contato.subtitulo}
