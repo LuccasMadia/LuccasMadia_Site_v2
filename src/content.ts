@@ -46,7 +46,7 @@ export const hero = {
   heading: 'MADIA',
   tagline: 'soluções administrativas, tecnológicas e visuais para o seu negócio',
   cta: 'Fale comigo',
-  portrait: '/images/logo-animada.webp',
+  portrait: '/images/logo-madia.png',
 }
 
 export const about = {
