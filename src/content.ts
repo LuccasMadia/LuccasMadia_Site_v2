@@ -238,7 +238,9 @@ export const formacoes = {
 }
 
 export const contato = {
-  titulo: 'Vamos conversar?',
-  botao: 'Chamar no WhatsApp',
+  titulo: 'Vamos organizar e fazer seu negócio crescer?',
+  subtitulo:
+    'Conte pra gente o desafio do seu negócio — administrativo, tecnológico ou visual — e receba um atendimento sob medida, sem compromisso.',
+  botao: 'Falar com a Madia agora',
   direitos: '© Madia Consultoria Digital — Todos os direitos reservados',
 }

@@ -8,17 +8,27 @@ export default function ContatoSection() {
       id="contato"
       className="flex min-h-screen flex-col bg-[#0C0C0C] px-5 pt-20 sm:px-8 md:px-10"
     >
-      <div className="flex flex-1 flex-col items-center justify-center gap-12 text-center sm:gap-16">
+      <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center sm:gap-8">
         <FadeIn>
           <h2
-            className="hero-heading font-black uppercase leading-none tracking-tight"
-            style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+            className="hero-heading max-w-4xl font-black uppercase leading-none tracking-tight"
+            style={{ fontSize: 'clamp(2.2rem, 8vw, 110px)' }}
           >
             {contato.titulo}
           </h2>
         </FadeIn>
-        <FadeIn delay={0.2}>
-          <ContactButton label={contato.botao} href={site.whatsapp} />
+        <FadeIn delay={0.15}>
+          <p
+            className="max-w-xl font-light leading-relaxed text-[#D7E2EA] opacity-70"
+            style={{ fontSize: 'clamp(0.95rem, 2vw, 1.25rem)' }}
+          >
+            {contato.subtitulo}
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.3}>
+          <div className="pt-4">
+            <ContactButton label={contato.botao} href={site.whatsapp} />
+          </div>
         </FadeIn>
       </div>
       <footer className="flex flex-col items-center justify-between gap-2 py-8 sm:flex-row">
